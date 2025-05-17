@@ -9,6 +9,7 @@ Merge changes: Changes introduced through merging other branches
 
 Additional Tools for Merge Detection
 Merge Analysis Tools:
+
 ```json
 json{
   "tools": [
@@ -93,6 +94,7 @@ json{
 ## Workflow
 
 ### Change Detection Phase:
+
 1. Find merge base with target branch
 2. Identify all commits since merge base
 3. Classify commits as:
@@ -100,8 +102,10 @@ json{
    - Merge commits (external changes)
    - Mixed commits (merge conflicts resolved by developer)
 
-### Change Classification:
+### Change Classification
+
 For each file change:
+
 - Track which commits introduced the change
 - Determine if change originated from:
   * Developer's direct edits
@@ -109,13 +113,14 @@ For each file change:
   * Manual merge conflict resolution
   * External branch merges
 
-### Focused Review:
+### Focused Review
+
 - Primary focus: Developer-authored changes
 - Secondary review: Merge conflict resolutions
 - Ignore: Automatic merge changes from other branches
 
-
 ## Configuration for Merge Handling
+
 ```yaml
 yaml# .mcp-pr-review.yml
 merge_detection:
@@ -202,7 +207,9 @@ json{
 ```
 
 ## Implementation Strategy
+
 Git Command Examples:
+
 ```bash
 bash# Find merge base
 git merge-base HEAD origin/master
@@ -217,23 +224,21 @@ git log -p --follow -- path/to/file merge-base..HEAD
 git log --merges merge-base..HEAD
 ```
 
-## Advanced Features:
+## Advanced Features
 
-### Intelligent Conflict Detection:
+### Intelligent Conflict Detection
 
 Detect when merge conflicts were resolved
 Analyze quality of conflict resolution
 Flag potentially problematic merges
 
-
-### Change Attribution:
+### Change Attribution
 
 Track original author of each line
 Identify when developer modified existing code vs. added new code
 Highlight areas where developer changed merged code
 
-
-### Review Optimization:
+### Review Optimization
 
 Skip review of unchanged merged code
 Focus on areas with developer input
